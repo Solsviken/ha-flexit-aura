@@ -1,12 +1,12 @@
 {
   "domain": "flexit_aura",
   "name": "Flexit Aura",
-  "codeowners": ["@solsvik"],
+  "codeowners": ["@Solsviken"],
   "config_flow": true,
-  "documentation": "https://github.com/solsvik/ha-flexit-aura",
+  "documentation": "https://github.com/Solsviken/ha-flexit-aura",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/solsvik/ha-flexit-aura/issues",
+  "issue_tracker": "https://github.com/Solsviken/ha-flexit-aura/issues",
   "requirements": [],
   "version": "0.1.0"
 }
