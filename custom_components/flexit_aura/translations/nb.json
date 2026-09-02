@@ -1,0 +1,97 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Flexit Aura",
+        "description": "Skriv inn adressen til ventilasjonsaggregatet. Device ID er den 16 tegn lange identifikatoren som vises i Flexit-appen under tilkoblingsinnstillingene.",
+        "data": {
+          "host": "IP-adresse eller vertsnavn",
+          "password": "Passord",
+          "device_id": "Device ID",
+          "name": "Navn",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Ingen svar fra viften. Kontroller IP-adressen, at viften er på nettverket, og at Device ID er riktig — feil Device ID gjør at viften ikke svarer i det hele tatt.",
+      "invalid_auth": "Viften avviste passordet.",
+      "unknown_response": "Viften svarte med noe integrasjonen ikke kunne tolke."
+    },
+    "abort": {
+      "already_configured": "Denne viften er allerede satt opp."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Innstillinger for Flexit Aura",
+        "data": {
+          "scan_interval": "Oppdateringsintervall (sekunder)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "fan1_rpm": {
+        "name": "Tilluftsvifte turtall"
+      },
+      "fan2_rpm": {
+        "name": "Avtrekksvifte turtall"
+      },
+      "filter_remaining": {
+        "name": "Filter gjenstår"
+      },
+      "filter_interval": {
+        "name": "Filterintervall"
+      },
+      "runtime": {
+        "name": "Driftstid"
+      },
+      "humidity_limit": {
+        "name": "Fuktgrense"
+      },
+      "air_mode_sensor": {
+        "name": "Luftmodus",
+        "state": {
+          "ventilation": "Ventilasjon",
+          "heat_recovery": "Varmegjenvinning",
+          "supply": "Tilluft"
+        }
+      },
+      "timer_mode": {
+        "name": "Timer-modus",
+        "state": {
+          "off": "Av",
+          "night": "Natt",
+          "party": "Party"
+        }
+      }
+    },
+    "binary_sensor": {
+      "alarm": {
+        "name": "Alarm"
+      },
+      "filter_warning": {
+        "name": "Filterbytte"
+      },
+      "boost": {
+        "name": "Boost"
+      },
+      "humidity_control": {
+        "name": "Fuktstyring"
+      }
+    },
+    "select": {
+      "air_mode": {
+        "name": "Luftmodus",
+        "state": {
+          "ventilation": "Ventilasjon",
+          "heat_recovery": "Varmegjenvinning",
+          "supply": "Tilluft"
+        }
+      }
+    }
+  }
+}

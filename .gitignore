@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.zip
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+
+# Working files from the phase 1-5 experiments. Kept on disk, out of the repo.
+Old dokumenter/

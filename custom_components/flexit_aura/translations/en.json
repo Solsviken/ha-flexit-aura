@@ -1,0 +1,97 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Flexit Aura",
+        "description": "Enter the address of the ventilation unit. The device ID is the 16-character identifier shown in the Flexit app under the unit's connection settings.",
+        "data": {
+          "host": "IP address or hostname",
+          "password": "Password",
+          "device_id": "Device ID",
+          "name": "Name",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "No answer from the unit. Check the IP address, that the unit is on the network, and that the device ID is correct — a wrong device ID makes the unit stay silent.",
+      "invalid_auth": "The unit rejected the password.",
+      "unknown_response": "The unit answered with something the integration could not decode."
+    },
+    "abort": {
+      "already_configured": "This unit is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Flexit Aura options",
+        "data": {
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "fan1_rpm": {
+        "name": "Supply fan speed"
+      },
+      "fan2_rpm": {
+        "name": "Extract fan speed"
+      },
+      "filter_remaining": {
+        "name": "Filter remaining"
+      },
+      "filter_interval": {
+        "name": "Filter interval"
+      },
+      "runtime": {
+        "name": "Operating time"
+      },
+      "humidity_limit": {
+        "name": "Humidity setpoint"
+      },
+      "air_mode_sensor": {
+        "name": "Air mode",
+        "state": {
+          "ventilation": "Ventilation",
+          "heat_recovery": "Heat recovery",
+          "supply": "Supply air"
+        }
+      },
+      "timer_mode": {
+        "name": "Timer mode",
+        "state": {
+          "off": "Off",
+          "night": "Night",
+          "party": "Party"
+        }
+      }
+    },
+    "binary_sensor": {
+      "alarm": {
+        "name": "Alarm"
+      },
+      "filter_warning": {
+        "name": "Filter change"
+      },
+      "boost": {
+        "name": "Boost"
+      },
+      "humidity_control": {
+        "name": "Humidity control"
+      }
+    },
+    "select": {
+      "air_mode": {
+        "name": "Air mode",
+        "state": {
+          "ventilation": "Ventilation",
+          "heat_recovery": "Heat recovery",
+          "supply": "Supply air"
+        }
+      }
+    }
+  }
+}
