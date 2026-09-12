@@ -1,13 +1,5 @@
 name: Validate
 
-# There is deliberately no hacs/action job here. That action fetches hacs.json
-# and manifest.json from raw.githubusercontent.com without a token, which
-# returns 404 for a private repository, so its hacsjson and integration_manifest
-# checks can never pass while this repo is private. Its remaining checks
-# (topics, license, description) are HACS store admission rules that do not
-# apply to installing from a custom repository. Re-add it if the repo goes
-# public. hassfest below validates manifest.json far more strictly anyway.
-
 on:
   push:
   pull_request:
@@ -23,6 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS
+    # hacs/action fetches hacs.json and manifest.json from raw.githubusercontent.com
+    # without a token, so this job only works while the repository is public.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        with:
+          category: integration
+          # No brand icons submitted upstream for a custom integration.
+          ignore: brands
 
   tests:
     name: Tests

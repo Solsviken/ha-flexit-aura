@@ -11,7 +11,7 @@ skrivetest av async-klienten mot fysisk vifte, og fase E (HACS-publisering).
 
 | Område | Status |
 |---|---|
-| Transport | UDP, port 4000, unicast mot viftas IP (192.168.1.114 i testoppsettet) |
+| Transport | UDP, port 4000, unicast mot viftas IP |
 | Rammeformat | `FD FD` + `02` (protokolltype) + len+DeviceID (16 ASCII) + len+passord (4 ASCII) + funksjon + parameterblokk + 2-byte checksum (sum & 0xFFFF, little-endian) |
 | Funksjoner | `0x01` = les, `0x03` = skriv-og-returner |
 | Parameterkoding | `FF <høybyte>` setter side; `<param> <verdi>` = 1 byte; `FE <len> <param> <data>` = flerbyte; `FD <param>` = ugyldig/ikke støttet |

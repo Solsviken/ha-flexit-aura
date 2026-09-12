@@ -72,7 +72,7 @@ frames.
 To check a live unit without writing anything to it:
 
 ```bash
-python scripts/smoke_read.py 192.168.1.114 --device-id 004B00285746570B --repeat 3
+python scripts/smoke_read.py <vifte-IP> --device-id <DEVICE-ID> --repeat 3
 ```
 
 It prints raw bytes next to decoded values, which is how the register decoding

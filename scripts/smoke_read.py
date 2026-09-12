@@ -4,7 +4,7 @@ Sends nothing but read telegrams, so it is safe to run at any time. Prints the
 raw bytes for every register next to the decoded value, which is how a decoding
 assumption gets confirmed or disproved.
 
-    python scripts/smoke_read.py 192.168.1.114 --device-id 004B00285746570B
+    python scripts/smoke_read.py <vifte-IP> --device-id <DEVICE-ID>
 """
 
 from __future__ import annotations

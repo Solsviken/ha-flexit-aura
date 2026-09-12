@@ -1,7 +1,7 @@
 # Protokolllogg — Flexit Aura 160
 
-Alle telegrammer under er fanget mot den fysiske viften på `192.168.1.114`,
-Device ID `004B00285746570B`, UDP port 4000. Bare lesing er brukt der ikke annet
+Alle telegrammer under er fanget mot forfatterens egen Aura 160 på et privat
+hjemmenett, Device ID `004B00285746570B` (den står i pakkene), UDP port 4000. Bare lesing er brukt der ikke annet
 er nevnt.
 
 ## Rammeformat (bekreftet)
@@ -49,8 +49,8 @@ håndteres nå eksplisitt.
 Blauberg/VENTS-familien skal kunne svare på Device ID `DEFAULT_DEVICEID`.
 Denne viften svarer ikke:
 
-- Unicast til `192.168.1.114:4000` med wildcard: timeout.
-- Broadcast til `255.255.255.255:4000` og `192.168.1.255:4000`: ingen svar.
+- Unicast til `<vifte-IP>:4000` med wildcard: timeout.
+- Broadcast til `255.255.255.255:4000` og subnettets broadcast-adresse: ingen svar.
 
 **Konsekvens:** ingen automatisk oppdagelse. Device ID er et påkrevd felt i
 config flow.
