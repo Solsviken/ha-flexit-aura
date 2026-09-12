@@ -2,10 +2,11 @@
 
 Status per 2026-09-02. Bygger på fase 1–5 i `Old dokumenter/`.
 
-**Framdrift:** fase A–D er implementert. Integrasjonen ligger i
-`custom_components/flexit_aura/`, 37 tester passerer uten hardware, og lesing er
-verifisert mot den fysiske viften (se `docs/protokoll-logg.md`). Gjenstår:
-skrivetest av async-klienten mot fysisk vifte, og fase E (HACS-publisering).
+**Framdrift (2026-09-12):** alle faser A–E er levert. Integrasjonen kjører i
+Home Assistant via HACS (custom repository, offentlig repo, release `0.1.0`),
+styring av hastighet og luftmodus er bekreftet på fysisk vifte, og 37 tester
+passerer uten hardware. Nye versjoner: bump `version` i `manifest.json`, push
+en tag med samme nummer — GitHub lager releasen og HACS varsler.
 
 ## 1. Hva som allerede er etablert
 
