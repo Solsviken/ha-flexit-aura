@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .client import AuraClient, AuraError
-from .const import DOMAIN, POLL_REGISTERS
+from .const import DOMAIN, MAX_CONSECUTIVE_FAILURES, POLL_REGISTERS
 from .model import FlexitAuraData
 
 _LOGGER = logging.getLogger(__name__)
@@ -38,12 +38,32 @@ class FlexitAuraCoordinator(DataUpdateCoordinator[FlexitAuraData]):
             update_interval=timedelta(seconds=scan_interval),
         )
         self.client = client
+        self.consecutive_failures = 0
 
     async def _async_update_data(self) -> FlexitAuraData:
         try:
             values = await self.client.async_read(POLL_REGISTERS)
         except AuraError as err:
+            self.consecutive_failures += 1
+            # A single missed poll shows up in Home Assistant as every entity
+            # flipping to unavailable for exactly one interval. Seen on
+            # 2026-09-12 as nine 30-second blips in ten hours on a unit that was
+            # fine the whole time. Keep the last snapshot until the unit has
+            # missed several polls in a row.
+            if (
+                self.data is not None
+                and self.consecutive_failures < MAX_CONSECUTIVE_FAILURES
+            ):
+                _LOGGER.debug(
+                    "Poll %s/%s mot %s feilet, beholder forrige data: %s",
+                    self.consecutive_failures,
+                    MAX_CONSECUTIVE_FAILURES,
+                    self.client.host,
+                    err,
+                )
+                return self.data
             raise UpdateFailed(str(err)) from err
+        self.consecutive_failures = 0
         return FlexitAuraData.from_parameters(values)
 
     async def async_write(self, register: int, value: int) -> None:

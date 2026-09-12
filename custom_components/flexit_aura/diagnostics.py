@@ -31,5 +31,6 @@ async def async_get_config_entry_diagnostics(
             "redacted": sorted(TO_REDACT),
         },
         "last_update_success": coordinator.last_update_success,
+        "consecutive_failures": coordinator.consecutive_failures,
         "decoded": asdict(data) if data else None,
     }

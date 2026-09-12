@@ -91,10 +91,22 @@ de samme 31,4 timene som driftstelleren viser. En naiv little-endian-tolkning
 ga 66,8 dager og 67 353 timer og er altså feil. Dekodingen er låst med
 enhetstestene i `tests/test_model.py`.
 
+## 2026-09-12 — sporadiske tapte poller i drift
+
+Etter fem dager i drift viste loggboken i Home Assistant ni «Utilgjengelig»-
+perioder på ti timer, hver på **nøyaktig 30 sekunder** — ett poll-intervall.
+Det er signaturen til én enkelt mislykket lesing (to forsøk à 2 s), ikke en
+vifte som faller av nettet. Sannsynlige årsaker: tapte UDP-datagrammer over
+Wi-Fi, eller at viften er opptatt med skyforbindelsen eller retningsskiftet.
+
+**Konsekvens:** koordinatoren beholder nå siste snapshot til
+`MAX_CONSECUTIVE_FAILURES` (3) poller på rad har feilet, og klienten gjør tre
+forsøk per utveksling i stedet for to. Antall påfølgende feil vises i
+diagnostikken som `consecutive_failures`.
+
 ## Åpne punkter
 
-- Skriving via den nye async-klienten er ikke kjørt mot fysisk vifte ennå.
-  Registrene `0x01`, `0x02` og `0xB7` er bekreftet skrivbare fra fase 3–5 med
-  den synkrone testkoden, og pakkebyggingen er byte-identisk.
+- ~~Skriving via async-klienten mot fysisk vifte~~ — bekreftet i Home Assistant
+  2026-09-07: hastighet (`0x02`) og luftmodus (`0xB7`) styres fra entitetene.
 - Verdien `0xFF` (manuell hastighet, register `0x44`) er ikke undersøkt.
 - Adferd ved viftens omstart og ved lengre nettverksbrudd er ikke testet.

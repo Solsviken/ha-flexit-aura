@@ -20,7 +20,8 @@ _LOGGER = logging.getLogger(__name__)
 # The unit needs a short pause after a write before the new value reads back.
 VERIFY_DELAY = 0.5
 VERIFY_ATTEMPTS = 3
-READ_ATTEMPTS = 2
+# Three tries at 2 s each still fits comfortably inside a 30 s poll interval.
+READ_ATTEMPTS = 3
 
 
 class AuraError(Exception):

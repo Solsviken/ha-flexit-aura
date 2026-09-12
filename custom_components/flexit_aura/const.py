@@ -14,6 +14,10 @@ DEFAULT_SCAN_INTERVAL: Final = 30
 MIN_SCAN_INTERVAL: Final = 10
 DEFAULT_TIMEOUT: Final = 2.0
 
+# Polls that may fail in a row before the entities are reported unavailable.
+# UDP over Wi-Fi drops the odd datagram; one missed poll is not the unit gone.
+MAX_CONSECUTIVE_FAILURES: Final = 3
+
 MANUFACTURER: Final = "Flexit"
 MODEL: Final = "Aura 160"
 
